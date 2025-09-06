@@ -80,12 +80,16 @@ def product_scraping(id_url, headers_template=None, user_agents=None):
                         logging.error(f"Error during submission: {e}")
                         return result, faulty_package
 
-                while future_to_id:
-                    done_futures = as_completed(future_to_id, timeout=6)
-                    future = next(done_futures)
-                    original_data = future_to_id.pop(future)
-                    product_data = future.result()
-                    try:
+            while future_to_id:
+                if stop_all_workers.is_set():
+                    break  # Break the loop if stop signal is already set
+
+                try:
+                    done_futures = as_completed(future_to_id, timeout=REQUEST_TIMEOUT)
+                    for future in done_futures:
+                        original_data = future_to_id.pop(future)
+                        product_data = future.result()
+
                         if "success" in product_data:
                             result = product_data["success"]
                             logging.info(f"Successfully added to result: {url}")
@@ -94,8 +98,10 @@ def product_scraping(id_url, headers_template=None, user_agents=None):
                                 f.cancel()
                             future_to_id.clear()
                             break
+
                         elif "retry" in product_data:
                             retry_count = product_data.get("retry_count")
+
                             if retry_count < MAX_RETRIES:
                                 sleep_time = random.uniform(0.5, 1.5) * (
                                     RETRY_BACKOFF_FACTOR**retry_count
@@ -131,25 +137,33 @@ def product_scraping(id_url, headers_template=None, user_agents=None):
                                 logging.warning(
                                     f"Max retries reached for {data_to_retry}"
                                 )
-                            pass
                         else:
                             faulty_package.append(product_data)
                             logging.warning(
                                 f"Faulty result for id {id}: {product_data}"
                             )
-                    except TimeoutError:
-                        # Timeout reached, check if stop_all_workers is set
-                        print("Waiting for futures to complete...")
-                        if stop_all_workers.is_set():
-                            break
-                    except Exception as e:
-                        original_data = product_data
-                        logging.error(f"Error processing: {e}")
-                        faulty_package.append(
-                            {
-                                f"{e}": original_data.items(),
-                            }
-                        )
+                    if stop_all_workers.is_set():
+                        break  # Break the loop if stop signal is already set
+
+                except TimeoutError:
+                    # Timeout reached, check if stop_all_workers is set
+                    print("Timeout for this url, waiting for futures to complete...")
+                    # if stop_all_workers.is_set():
+                    #     break
+                    continue
+                except Exception as e:
+                    original_data = product_data
+                    logging.error(f"Error processing: {e}")
+                    faulty_package.append(
+                        {
+                            f"{e}": original_data.items(),
+                        }
+                    )
+                    continue
+    # Cancel any remaining futures if a success was found
+    if stop_all_workers.is_set():
+        for future in future_to_id:
+            future.cancel()
     return result, faulty_package
 
 
@@ -161,12 +175,15 @@ def request_data(session, url, headers, stop_event, retry_count=0):
         response = session.get(url, headers=headers, timeout=REQUEST_TIMEOUT)
 
         if response.status_code in [200, 201]:
-            product_data = [{"url": url}]
+            product_data = {"url": url}
             logging.info(f"Successed: {url}")
             react_data = extract_react_data(response.text)
-            for key, value in react_data.items():
-                if key in keys_map:
-                    product_data.append({key: value})
+            if react_data:
+                for key, value in react_data.items():
+                    if key in keys_map:
+                        product_data[key] = value
+            else:
+                product_data.append({"value": "nothing found"})
             return {
                 "success": product_data,
             }
@@ -232,11 +249,9 @@ def main():
     }
 
     file_path = ["product_dict\\batch_4.json"]
+    test_path = ["product_dict\\test.json"]
     faulty_output_dir = "faulty\\"
     result_output_dir = "result\\"
-
-    # with open("product_dict\\test.json", "r") as f:
-    #     test_id_url = json.load(f)
 
     global stop_all_workers
     stop_all_workers.clear()
@@ -244,7 +259,7 @@ def main():
     final_result = []
     final_faulty = []
 
-    for id_url in streaming_json(file_path):
+    for id_url in streaming_json(test_path):
         start_time = time.perf_counter()
 
         result, faulty_package = product_scraping(id_url, headers_template, user_agents)
