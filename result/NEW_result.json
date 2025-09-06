@@ -1,0 +1,257 @@
+[
+    [
+        {
+            "url": "https://www.glamira.co.uk/glamira-pendant-viktor.html?alloy=yellow-585"
+        },
+        {
+            "product_id": 110474
+        },
+        {
+            "name": "Men's Pendant Viktor"
+        },
+        {
+            "sku": "Men-Viktor"
+        },
+        {
+            "attribute_set_id": 55
+        },
+        {
+            "attribute_set": "diamonds"
+        },
+        {
+            "type_id": "simple"
+        },
+        {
+            "price": "177.000000"
+        },
+        {
+            "min_price": "97.000000"
+        },
+        {
+            "max_price": "1500.000000"
+        },
+        {
+            "min_price_format": "£97.00"
+        },
+        {
+            "max_price_format": "£1,500.00"
+        },
+        {
+            "gold_weight": "0.3978"
+        },
+        {
+            "none_metal_weight": 0
+        },
+        {
+            "fixed_silver_weight": 0
+        },
+        {
+            "material_design": null
+        },
+        {
+            "qty": 1
+        },
+        {
+            "collection": "symbols"
+        },
+        {
+            "collection_id": "5157"
+        },
+        {
+            "product_type": "pendant"
+        },
+        {
+            "product_type_value": "4"
+        },
+        {
+            "category": "849"
+        },
+        {
+            "category_name": "Necklaces"
+        },
+        {
+            "store_code": "glgb"
+        },
+        {
+            "show_popup_quantity_eternity": 0
+        },
+        {
+            "visible_contents": [
+                ""
+            ]
+        },
+        {
+            "gender": "men"
+        }
+    ],
+    [
+        {
+            "url": "https://www.glamira.ae/sense-muse-4-mm.html?alloy=white_red-375&gclid=EAIaIQobChMInaOS5ZH_6AIV0NHVCh060QyzEAEYASABEgKvsfD_BwE"
+        },
+        {
+            "product_id": 99316
+        },
+        {
+            "name": "Wedding Ring Sense Muse 4 mm"
+        },
+        {
+            "sku": "GWD-M1038"
+        },
+        {
+            "attribute_set_id": 26
+        },
+        {
+            "attribute_set": "trauring"
+        },
+        {
+            "type_id": "product_set"
+        },
+        {
+            "price": "4100.000000"
+        },
+        {
+            "min_price": "1568.000000"
+        },
+        {
+            "max_price": "47670.000000"
+        },
+        {
+            "min_price_format": "AED 1,568.00"
+        },
+        {
+            "max_price_format": "AED 47,670.00"
+        },
+        {
+            "gold_weight": "2.75837562"
+        },
+        {
+            "none_metal_weight": 0
+        },
+        {
+            "fixed_silver_weight": 0
+        },
+        {
+            "material_design": null
+        },
+        {
+            "qty": 1
+        },
+        {
+            "collection": "memoire"
+        },
+        {
+            "collection_id": "4396"
+        },
+        {
+            "product_type": "wedding_ring"
+        },
+        {
+            "product_type_value": "12"
+        },
+        {
+            "category": "688"
+        },
+        {
+            "category_name": "Wedding Rings"
+        },
+        {
+            "store_code": "glae"
+        },
+        {
+            "show_popup_quantity_eternity": 1
+        },
+        {
+            "visible_contents": [
+                ""
+            ]
+        },
+        {
+            "gender": false
+        }
+    ],
+    [
+        {
+            "url": "https://www.glamira.ch/fr/glamira-pendant-nantale.html?alloy=white-silber&diamond=sapphire-cabochon&stone2=diamond-sapphire"
+        },
+        {
+            "product_id": 108591
+        },
+        {
+            "name": "Pendentif pour femme Nantale"
+        },
+        {
+            "sku": "nantale"
+        },
+        {
+            "attribute_set_id": 55
+        },
+        {
+            "attribute_set": "diamonds"
+        },
+        {
+            "type_id": "simple"
+        },
+        {
+            "price": "175.000000"
+        },
+        {
+            "min_price": "127.000000"
+        },
+        {
+            "max_price": "1943.000000"
+        },
+        {
+            "min_price_format": "127.00 CHF"
+        },
+        {
+            "max_price_format": "1 943.00 CHF"
+        },
+        {
+            "gold_weight": "0.3588"
+        },
+        {
+            "none_metal_weight": 0
+        },
+        {
+            "fixed_silver_weight": 0
+        },
+        {
+            "material_design": null
+        },
+        {
+            "qty": 1
+        },
+        {
+            "collection": "cabochon"
+        },
+        {
+            "collection_id": "5299"
+        },
+        {
+            "product_type": "necklace"
+        },
+        {
+            "product_type_value": "3"
+        },
+        {
+            "category": "601"
+        },
+        {
+            "category_name": "Pendentifs avec colliers"
+        },
+        {
+            "store_code": "glch_fr"
+        },
+        {
+            "show_popup_quantity_eternity": 0
+        },
+        {
+            "visible_contents": [
+                ""
+            ]
+        },
+        {
+            "gender": "women"
+        }
+    ]
+]
